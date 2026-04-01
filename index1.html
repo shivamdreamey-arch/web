@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anime Recommender</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            background-color: #00ff00;
+            color: black;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .anime-card {
+            border: 1px solid #00ff00;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Anime Recommendation System 🎌</h1>
+
+    <h3>Enter Your Name</h3>
+    <input type="text" id="name" placeholder="Your Name">
+
+    <h3>Select Your Favorite Genre</h3>
+    <select id="genre">
+        <option value="action">Action</option>
+        <option value="romance">Romance</option>
+        <option value="comedy">Comedy</option>
+        <option value="thriller">Thriller</option>
+    </select>
+
+    <h3>Select Your Mood</h3>
+    <select id="mood">
+        <option value="happy">Happy</option>
+        <option value="sad">Sad</option>
+        <option value="excited">Excited</option>
+    </select>
+
+    <br>
+    <button onclick="recommendAnime()">Get Recommendations</button>
+
+    <div id="result"></div>
+
+    <script>
+        function recommendAnime() {
+            let name = document.getElementById("name").value;
+            let genre = document.getElementById("genre").value;
+            let mood = document.getElementById("mood").value;
+
+            let resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            let recommendations = [];
+
+            // Simple logic
+            if (genre === "action") {
+                recommendations = ["Attack on Titan", "Naruto", "Demon Slayer"];
+            } 
+            else if (genre === "romance") {
+                recommendations = ["Your Name", "Toradora", "Clannad"];
+            } 
+            else if (genre === "comedy") {
+                recommendations = ["Gintama", "One Punch Man", "KonoSuba"];
+            } 
+            else if (genre === "thriller") {
+                recommendations = ["Death Note", "Tokyo Ghoul", "Erased"];
+            }
+
+            // Mood-based tweak
+            if (mood === "sad") {
+                recommendations.push("A Silent Voice");
+            } 
+            else if (mood === "happy") {
+                recommendations.push("Haikyuu");
+            } 
+            else if (mood === "excited") {
+                recommendations.push("My Hero Academia");
+            }
+
+            // Display
+            let output = `<h2>Hello ${name}, here are your recommendations:</h2>`;
+
+            recommendations.forEach(anime => {
+                output += `<div class="anime-card">${anime}</div>`;
+            });
+
+            resultDiv.innerHTML = output;
+        }
+    </script>
+
+</body>
+</html>
